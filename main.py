@@ -1,7 +1,7 @@
 country_in_list = []
 country_in = ""
 
-def eliminar_tildes (li):
+def eliminar_tildes(li):
     li = li.replace('á', 'a')
     li = li.replace('é', 'e')
     li = li.replace('í', 'i')
@@ -19,12 +19,12 @@ def load_countries():
     data.close()
     return country_list
 
-def points(country_in_list, country_list):
+def points(country_in, country_list):
     point = 0
-    country_in_list = set( country_in_list )
+    country_in = set( country_in )
     print("Tus países introducidos:")
-    print(country_in_list) 
-    for countrin in country_in_list:
+    print(country_in) 
+    for countrin in country_in:
         for countrli in country_list:
             if countrin == countrli:
                 point += 1
@@ -32,11 +32,10 @@ def points(country_in_list, country_list):
                 
 
 
-while country_in != 'salir':
-    country_in = input("Introduzca nombre de país en castellano: ").lower().strip()
-    if country_in != 'salir':
-        country_in_list.append(eliminar_tildes(country_in))
-country_in_list = sorted(country_in_list)
 
-points(country_in_list, load_countries())
+country_in = eliminar_tildes(input("Introduzca nombre de país en castellano separados por coma: ").lower().strip())
+country_in = sorted(country_in.split(","))
+
+
+points(country_in, load_countries())
             
